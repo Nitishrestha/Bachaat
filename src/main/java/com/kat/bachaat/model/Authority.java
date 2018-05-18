@@ -1,14 +1,10 @@
 package com.kat.bachaat.model;
 
-import javax.persistence.FetchType;
-import javax.persistence.ManyToMany;
 import java.util.List;
 
 public class Authority {
     private Long id;
     private String name;
-
-    @ManyToMany(mappedBy = "authorityList", fetch = FetchType.LAZY)
     private List<User> userList;
 
     public Long getId() {

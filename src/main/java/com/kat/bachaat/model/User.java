@@ -1,9 +1,5 @@
 package com.kat.bachaat.model;
 
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import java.util.Date;
 import java.util.List;
 
@@ -17,11 +13,6 @@ public class User {
     private int activationCode;
     private String mobileNumber;
     private boolean active;
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "USER_AUTHORITY",
-            joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "user_id")},
-            inverseJoinColumns = {@JoinColumn(name = "authority_id", referencedColumnName = "authority_id")})
     private List<Authority> authorityList;
     private Date createdDate;
     private Date updatedDate;
@@ -157,3 +148,4 @@ public class User {
                 '}';
     }
 }
+

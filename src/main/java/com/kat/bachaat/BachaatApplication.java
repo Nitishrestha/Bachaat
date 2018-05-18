@@ -42,4 +42,3 @@ public class BachaatApplication {
         return 8080;
     }
 }
-
