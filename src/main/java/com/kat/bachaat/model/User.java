@@ -1,20 +1,41 @@
 package com.kat.bachaat.model;
 
+import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
+@Entity
+@Table(name = "tbl_user")
 public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="user_id")
     private Long userId;
+    @Column(name="first_name")
     private String firstName;
+    @Column(name="middle_name")
     private String middleName;
+    @Column(name="last_name")
     private String lastName;
+    @Column(name="email")
     private String email;
+    @Column(name="address")
     private String address;
+    @Column(name="activation_code")
     private int activationCode;
+    @Column(name="mobile_number")
     private String mobileNumber;
+    @Column(name="is_active")
     private boolean active;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "USER_AUTHORITY",
+            joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "user_id")},
+            inverseJoinColumns = {@JoinColumn(name = "authority_id", referencedColumnName = "authority_id")})
     private List<Authority> authorityList;
+    @Column(name="created_date")
     private Date createdDate;
+    @Column(name="updated_date")
     private Date updatedDate;
 
     public User() {
