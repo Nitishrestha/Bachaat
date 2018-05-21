@@ -27,7 +27,8 @@ dependencies {
             "org.hibernate:hibernate-core:5.2.7.Final",
             "com.fasterxml.jackson.core:jackson-core:2.9.2",
             "org.apache.tomcat.embed:tomcat-embed-jasper:8.0.47",
-            "mysql:mysql-connector-java:5.1.38"
+            "mysql:mysql-connector-java:5.1.38",
+            "com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.2"
     )
 
     testCompile(
