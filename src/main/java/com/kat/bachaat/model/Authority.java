@@ -1,10 +1,18 @@
 package com.kat.bachaat.model;
 
+import javax.persistence.*;
 import java.util.List;
 
+@Entity
+@Table(name="tbl_authority")
 public class Authority {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="authority_id")
     private Long id;
+    @Column(name="authority_name")
     private String name;
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "authorityList")
     private List<User> userList;
 
     public Long getId() {
