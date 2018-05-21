@@ -1,37 +1,58 @@
 package com.kat.bachaat.model;
 
+import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
+@Entity
+@Table(name = "tbl_user")
 public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id")
     private Long userId;
+    @Column(name = "first_name")
     private String firstName;
+    @Column(name = "middle_name")
     private String middleName;
+    @Column(name = "last_name")
     private String lastName;
+    @Column(name = "email")
     private String email;
+    @Column(name = "address")
     private String address;
+    @Column(name = "activation_code")
     private int activationCode;
+    @Column(name = "mobile_number")
     private String mobileNumber;
+    @Column(name = "is_active")
     private boolean active;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "USER_AUTHORITY",
+            joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "user_id")},
+            inverseJoinColumns = {@JoinColumn(name = "authority_id", referencedColumnName = "authority_id")})
     private List<Authority> authorityList;
+    @Column(name = "created_date")
     private Date createdDate;
+
+    @Column(name = "updated_date")
     private Date updatedDate;
+
+    @Column(name = "password")
+    private String password;
 
     public User() {
     }
 
-    public User(Long userId, String firstName, String middleName, String lastName, String email, String address, int activationCode, String mobileNumber, boolean active, Authority authority, Date createdDate, Date updatedDate) {
-        this.userId = userId;
+    public User(String firstName, String middleName, String lastName, String email, String address, String mobileNumber, String password) {
         this.firstName = firstName;
         this.middleName = middleName;
         this.lastName = lastName;
         this.email = email;
         this.address = address;
-        this.activationCode = activationCode;
         this.mobileNumber = mobileNumber;
-        this.active = active;
-        this.createdDate = createdDate;
-        this.updatedDate = updatedDate;
+        this.password = password;
     }
 
     public Long getUserId() {
@@ -130,6 +151,14 @@ public class User {
         this.updatedDate = updatedDate;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -145,6 +174,7 @@ public class User {
                 ", authorityList=" + authorityList +
                 ", createdDate=" + createdDate +
                 ", updatedDate=" + updatedDate +
+                ", password='" + password + '\'' +
                 '}';
     }
 }
